@@ -32,16 +32,15 @@ logo.onclick = () => {
 prev.onclick = () => {
   swiper.scrollTo({
     top: 0,
-    left: swiper.scrollLeft - (swiper.firstElementChild.clientWidth + 16),
+    left: swiper.scrollLeft - swiper.firstElementChild.clientWidth,
     behavior: 'smooth'
   })
 }
 
 next.onclick = () => {
-  console.log(swiper.firstElementChild.clientWidth)
   swiper.scrollTo({
     top: 0,
-    left: swiper.scrollLeft + (swiper.firstElementChild.clientWidth + 16),
+    left: swiper.scrollLeft + swiper.firstElementChild.clientWidth,
     behavior: 'smooth'
   })
 }
