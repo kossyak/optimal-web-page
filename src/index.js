@@ -1,66 +1,75 @@
-import './styles.css'
-import './styles/barMenu.css'
-import './styles/arrow.css'
-const wr = document.querySelector('.wallpaper')
-const logo = document.querySelector('.bottom-logo')
-const prev = document.querySelector('.prev')
-const next = document.querySelector('.next')
-const swiper = document.querySelector('.swiper')
+import '/styles.css'
+import '/styles/barMenu.css'
+import '/styles/arrow.css'
+// import router from '/router'
 
-const mobileBar = document.querySelector('.mobile-bar')
-const topBar = document.querySelector('.top-bar')
+(async() => {
+  const wr = document.querySelector('.wallpaper')
+  const logo = document.querySelector('.bottom-logo')
+  const prev = document.querySelector('.prev')
+  const next = document.querySelector('.next')
+  const swiper = document.querySelector('.swiper')
 
-mobileBar.onclick = () => {
-  topBar.classList.toggle('show')
-  mobileBar.classList.toggle('active')
-}
-// const searchClose = document.querySelector('.search-close')
-// const searchWindow = document.querySelector('.search-window')
-//
-//
-// searchClose.onclick = () => {
-//   searchWindow.style.display = 'none'
-// }
+  const mobileBar = document.querySelector('.mobile-bar')
+  const topBar = document.querySelector('.top-bar')
 
-logo.onclick = () => {
-  wr.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
-  })
-}
-prev.onclick = () => {
-  swiper.scrollTo({
-    top: 0,
-    left: swiper.scrollLeft - swiper.firstElementChild.clientWidth,
-    behavior: 'smooth'
-  })
-}
-
-next.onclick = () => {
-  swiper.scrollTo({
-    top: 0,
-    left: swiper.scrollLeft + swiper.firstElementChild.clientWidth,
-    behavior: 'smooth'
-  })
-}
-let timer = null
-
-swiper.onscroll = () => {
-  if (timer !== null) {
-    clearTimeout(timer)
+  mobileBar.onclick = () => {
+    topBar.classList.toggle('show')
+    mobileBar.classList.toggle('active')
+    // router()
   }
-  prev.disabled = true
-  next.disabled = true
-  timer = setTimeout(() => {
-    prev.disabled = false
-    next.disabled = false
-  }, 50)
-}
+  mobileBar.onclick = () => {
+    topBar.classList.toggle('show')
+    mobileBar.classList.toggle('active')
+  }
+  // const searchClose = document.querySelector('.search-close')
+  // const searchWindow = document.querySelector('.search-window')
+  //
+  //
+  // searchClose.onclick = () => {
+  //   searchWindow.style.display = 'none'
+  // }
 
-window.onresize = () => {
-  swiper.scrollTo({
-    top: 0,
-    left: 0
-  })
-}
+  logo.onclick = () => {
+    wr.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+  prev.onclick = () => {
+    swiper.scrollTo({
+      top: 0,
+      left: swiper.scrollLeft - swiper.firstElementChild.clientWidth,
+      behavior: 'smooth'
+    })
+  }
+
+  next.onclick = () => {
+    swiper.scrollTo({
+      top: 0,
+      left: swiper.scrollLeft + swiper.firstElementChild.clientWidth,
+      behavior: 'smooth'
+    })
+  }
+  let timer = null
+
+  swiper.onscroll = () => {
+    if (timer !== null) {
+      clearTimeout(timer)
+    }
+    prev.disabled = true
+    next.disabled = true
+    timer = setTimeout(() => {
+      prev.disabled = false
+      next.disabled = false
+    }, 50)
+  }
+
+  window.onresize = () => {
+    swiper.scrollTo({
+      top: 0,
+      left: 0
+    })
+  }
+})()

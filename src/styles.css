@@ -1,7 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root{
   --fs-s: 2.2rem;
   --fs-m: 3.5rem;
   --fs-l: 4rem;
+  --fs-xl: 8rem;
   --fs-xxl: 10rem;
   --xs: 1rem;
   --s: 2rem;
@@ -45,13 +52,14 @@ a:hover {
   color: var(--gray900);
 }
 h2 {
-  max-width: 84vw;
   font-size: 8vmax;
   margin-bottom: 15vmin;
   letter-spacing: -.02em;
+  line-height: .8;
 }
 img {
   display: block;
+  max-width: 100%;
 }
 button {
   display: flex;
@@ -92,12 +100,14 @@ button {
   position: absolute;
   width: 5rem;
   height: 5rem;
-  margin: var(--m) 5.5vw;
+  top: var(--m);
+  right: max(var(--m), 5.5vw);
   z-index: 2;
 }
 .top-bar {
   position: fixed;
   top: 0;
+  right: max(var(--m), 5.5vw);
   z-index: 2;
   font-size: var(--fs-s);
   line-height: 1;
@@ -111,6 +121,7 @@ button {
   justify-content: flex-end;
   position: relative;
   scroll-snap-align: start;
+  position: relative;
 }
 .logo {
   width: 3vw;
@@ -131,14 +142,14 @@ button {
 }
 .menu {
   flex: 1 0 40%;
-  padding: 0 5.5vw;
+  padding: 0 max(var(--m), 5.5vw);
   box-sizing: border-box;
 }
 .nav {
   padding: .5em 0;
   box-sizing: border-box;
   white-space: nowrap;
-  font-size: 3vmax;
+  font-size: max(var(--fs-m), 3vmax);
   letter-spacing: -.02em;
 }
 .services {
@@ -173,7 +184,6 @@ button {
   position: relative;
 }
 .text-block {
-  width: 84vw;
   max-width: max-content;
   margin-bottom: 20vmin;
   font-size: var(--fs-m);
@@ -192,26 +202,26 @@ p {
 
 .swiper {
   flex: 1;
-  max-width: 84vw;
   overflow-x: auto;
   overflow-y: hidden;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   /*white-space: nowrap;*/
-  display: flex;
   scroll-direction: horizontal;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  margin: 0 auto;
 }
 .swiper::-webkit-scrollbar {
   display: none;
 }
+.sw-fl {
+  display: flex;
+  width: max-content;
+}
 .slide {
-  /*border: 1px solid var(--gray300);*/
   position: relative;
-  min-width: var(--w-col);
+  width: min(calc(100vmin - var(--xl)), 500px);
   margin-right: 16px;
   overflow: hidden;
   border:1px solid var(--gray300);
@@ -247,9 +257,8 @@ p {
   margin-left: auto;
 }
 .columns {
-  max-width: 1440px;
   margin: 0 var(--l) 0 auto;
-  padding: var(--l);
+  padding: max(var(--m), 3vw);
   box-sizing: border-box;
   columns: 20ch 3;
   column-gap: 2em;
@@ -261,16 +270,16 @@ p {
   letter-spacing: -.02em;
 }
 .stickers {
+  font-size: clamp(var(--fs-xl), 12vmin, var(--fs-xxl));
   width: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 .sticker {
-  padding: 0 3em 5em 3em;
+  padding: 0 var(--m) 1em var(--m);
 }
 .sticker-title {
-  font-size: 12vmin;
   line-height: 1;
   letter-spacing: -.05em;
   font-weight: bold;
@@ -278,13 +287,13 @@ p {
 }
 
 .sticker-desc {
-  font-size: var(--fs-s);
+  font-size: .2em;
 }
 
 .footer{
   display: flex;
   flex-wrap: wrap;
-  padding: 0 var(--xl);
+  padding: 0 var(--l);
   box-sizing: border-box;
   font-size: var(--fs-s);
   scroll-snap-align: end;
@@ -324,6 +333,9 @@ p {
   padding: 0 var(--m);
   box-sizing: border-box;
 }
+.opt-w {
+  width: 60%;
+}
 :focus {
   outline: 1px solid var(--gray900);
 }
@@ -339,16 +351,17 @@ p {
     padding-left: 0;
     padding-right: 0;
   }
-  .swiper {
-    margin: 0 auto;
-  }
-  .slide {
-    min-width: 100%;
+
+  /*.slide {*/
+  /*  min-width: 100%;*/
+  /*}*/
+  .opt-w {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 640px) {
   html {
-    font-size: 9px;
+    font-size: 8px;
   }
   .mobile-bar {
     display: block;
@@ -368,9 +381,6 @@ p {
   .show {
     display: block;
   }
-  .text-block {
-    width: 100%;
-  }
   .columns {
     margin-right: 0;
   }
@@ -378,5 +388,8 @@ p {
 @media (pointer:coarse) {
   .slide-nav {
     display: none;
+  }
+  .swiper {
+    max-width: 100%;
   }
 }
